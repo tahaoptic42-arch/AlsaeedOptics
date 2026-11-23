@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero" id="home"><div><p class="eyebrow">SEE THE WORLD CLEARLY</p><h1>Style for your eyes.</h1><p>Discover frames and sunglasses at Alsaeed Optics.</p><a class="btn" href="#products">Explore Products</a></div><div class="hero-art">👓</div></section>
+<section class="section" id="products"><div class="section-heading"><p class="eyebrow">OUR COLLECTION</p><h2>Featured Products</h2></div>
+<div class="products">{% for p in products %}<article class="product-card">
+<div class="product-art">{% if p.image %}<img src="{{ url_for('static', filename='uploads/' ~ p.image) }}" alt="{{ p.name_en }}">{% else %}{{ p.symbol }}{% endif %}</div>
+<div class="product-info"><h3>{{ p.name_en }} / {{ p.name_ur }}</h3><p>{{ p.description_en }}</p><strong>{{ p.price }}</strong>
+<a class="order-btn" href="https://wa.me/{{ whatsapp_number }}?text={{ ('Hello, I am interested in ' ~ p.name_en)|urlencode }}" target="_blank" rel="noopener">Order on WhatsApp</a></div></article>{% else %}<p>No products added yet.</p>{% endfor %}</div></section>
+<section class="contact" id="contact"><div><p class="eyebrow">GET IN TOUCH</p><h2>Visit Alsaeed Optics</h2><p>For product details and orders, contact us on WhatsApp.</p></div><a class="btn" href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener">WhatsApp</a></section>
+{% endblock %}
